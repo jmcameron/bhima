@@ -1,0 +1,52 @@
+<div class="form-group" data-bh-stock-filter-exhausted>
+  <label class="control-label" translate>
+    {{$ctrl.label}}
+  </label>
+
+  <ng-transclude></ng-transclude>
+
+  <div>
+    <div class="radio">
+      <label class="radio-inline">
+        <input
+          type="radio"
+          name="{{$ctrl.name}}"
+          ng-value="0"
+          ng-model="$ctrl.value"
+          ng-change="$ctrl.onChange($ctrl.value)"
+          required>
+        <span translate>{{$ctrl.excludeLabel}}</span>
+      </label>
+    </div>
+
+    <div class="radio">
+      <label class="radio-inline">
+        <input
+          type="radio"
+          name="{{$ctrl.name}}"
+          ng-value="1"
+          ng-model="$ctrl.value"
+          ng-change="$ctrl.onChange($ctrl.value)"
+          required>
+        <span translate>{{$ctrl.includeLabel}}</span>
+      </label>
+    </div>
+
+    <div class="radio">
+      <label class="radio-inline">
+        <input
+          type="radio"
+          name="{{$ctrl.name}}"
+          ng-value="2"
+          ng-model="$ctrl.value"
+          ng-change="$ctrl.onChange($ctrl.value)"
+          required>
+        <span translate>{{$ctrl.includeOnlyLabel}}</span>
+      </label>
+    </div>
+
+    <span class="help-block" ng-show="$ctrl.helpText" translate>
+      {{$ctrl.helpText}}
+    </span>
+  </div>
+</div>
