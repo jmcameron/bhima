@@ -13,10 +13,10 @@
 
 const _ = require('lodash');
 const moment = require('moment');
+const { param } = require('jquery');
 const db = require('../../lib/db');
 const FilterParser = require('../../lib/filter');
 const util = require('../../lib/util');
-// const { param } = require('jquery');  ??? Not sure why hound is complaining about this now
 
 const flux = {
   FROM_PURCHASE    : 1,
