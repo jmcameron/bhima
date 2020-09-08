@@ -47,7 +47,8 @@ function StockLotsRegistryTests() {
     };
     await modal.setDepot('Depot Principal');
     await modal.submit();
-    await GU.expectCellValueMatch(gridId, 1, 2, JSON.stringify(GU, null, 2));
+    const dump = JSON.stringify(GU, null, 2);
+    await GU.expectCellValueMatch(gridId, 1, 2, dump);
     // await GU.expectCellValueMatch(gridId, 1, 2, vitamine.label);
     // await GU.expectCellValueMatch(gridId, 1, 4, vitamine.lot);
     // await GU.expectCellValueMatch(gridId, 1, 5, vitamine.quantity);
