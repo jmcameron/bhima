@@ -47,12 +47,12 @@ function StockLotsRegistryTests() {
     };
     await modal.setDepot('Depot Principal');
     await modal.submit();
-    // await GU.expectCellValueMatch(gridId, 1, 2, vitamine.label);
-    // await GU.expectCellValueMatch(gridId, 1, 4, vitamine.lot);
-    // await GU.expectCellValueMatch(gridId, 1, 5, vitamine.quantity);
-    // await GU.expectCellValueMatch(gridId, 2, 2, quinine.label);
-    // await GU.expectCellValueMatch(gridId, 2, 4, quinine.lot);
-    // await GU.expectCellValueMatch(gridId, 2, 5, quinine.quantity);
+    await GU.expectCellValueMatch(gridId, 1, 2, vitamine.label);
+    await GU.expectCellValueMatch(gridId, 1, 4, vitamine.lot);
+    await GU.expectCellValueMatch(gridId, 1, 5, vitamine.quantity);
+    await GU.expectCellValueMatch(gridId, 2, 2, quinine.label);
+    await GU.expectCellValueMatch(gridId, 2, 4, quinine.lot);
+    await GU.expectCellValueMatch(gridId, 2, 5, quinine.quantity);
     await filters.resetFilters();
   });
 }
