@@ -13,7 +13,7 @@
 
 const _ = require('lodash');
 const moment = require('moment');
-const { param } = require('jquery');
+// const { param } = require('jquery');  ??? Does not seem necessary and hound complains about it
 const db = require('../../lib/db');
 const FilterParser = require('../../lib/filter');
 const util = require('../../lib/util');
