@@ -1,6 +1,6 @@
 <div class="form-group" data-bh-stock-filter-exhausted>
   <label class="control-label" translate>
-    {{$ctrl.label}}
+    LOTS.INCLUDE_EXHAUSTED_LOTS
   </label>
 
   <ng-transclude></ng-transclude>
@@ -15,7 +15,7 @@
           ng-model="$ctrl.value"
           ng-change="$ctrl.onChange($ctrl.value)"
           required>
-        <span translate>{{$ctrl.excludeLabel}}</span>
+        <span translate>LOTS.EXCLUDE_EXHAUSTED_LOTS</span>
       </label>
     </div>
 
@@ -28,7 +28,7 @@
           ng-model="$ctrl.value"
           ng-change="$ctrl.onChange($ctrl.value)"
           required>
-        <span translate>{{$ctrl.includeLabel}}</span>
+        <span translate>LOTS.INCLUDE_EXHAUSTED_LOTS</span>
       </label>
     </div>
 
@@ -41,12 +41,12 @@
           ng-model="$ctrl.value"
           ng-change="$ctrl.onChange($ctrl.value)"
           required>
-        <span translate>{{$ctrl.includeOnlyLabel}}</span>
+        <span translate>LOTS.INCLUDE_ONLY_EXHAUSTED_LOTS</span>
       </label>
     </div>
 
     <span class="help-block" ng-show="$ctrl.helpText" translate>
-      {{$ctrl.helpText}}
+      STOCK.INCLUDE_EMPTY_LOTS_HELP
     </span>
   </div>
 </div>
