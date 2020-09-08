@@ -47,7 +47,26 @@ function StockLotsRegistryTests() {
     };
     await modal.setDepot('Depot Principal');
     await modal.submit();
-    const dump = JSON.stringify(GU, null, 2);
+    const dump = JSON.stringify(GU.getCell(gridId, 1, 2)) + '|2 ' +
+      JSON.stringify(GU.getCell(gridId, 2, 2)) + '|3 ' +
+      JSON.stringify(GU.getCell(gridId, 3, 2)) + '|4 ' +
+      JSON.stringify(GU.getCell(gridId, 4, 2)) + '|5 ' +
+      JSON.stringify(GU.getCell(gridId, 5, 2)) + '|6 ' +
+      JSON.stringify(GU.getCell(gridId, 6, 2)) + '|7 ' +
+      JSON.stringify(GU.getCell(gridId, 7, 2)) + '|8 ' +
+      JSON.stringify(GU.getCell(gridId, 8, 2)) + '|9 ' +
+      JSON.stringify(GU.getCell(gridId, 9, 2)) + '|10 ' +
+      JSON.stringify(GU.getCell(gridId, 10, 2)) + '|11 ' +
+      JSON.stringify(GU.getCell(gridId, 11, 2)) + '|12 ' +
+      JSON.stringify(GU.getCell(gridId, 12, 2)) + '|13 ' +
+      JSON.stringify(GU.getCell(gridId, 13, 2)) + '|14 ' +
+      JSON.stringify(GU.getCell(gridId, 14, 2)) + '|15 ' +
+      JSON.stringify(GU.getCell(gridId, 15, 2)) + '|16 ' +
+      JSON.stringify(GU.getCell(gridId, 16, 2)) + '|17 ' +
+      JSON.stringify(GU.getCell(gridId, 17, 2)) + '|18 ' +
+      JSON.stringify(GU.getCell(gridId, 18, 2)) + '|19 ' +
+      JSON.stringify(GU.getCell(gridId, 19, 2));
+
     await GU.expectCellValueMatch(gridId, 1, 2, dump);
     // await GU.expectCellValueMatch(gridId, 1, 2, vitamine.label);
     // await GU.expectCellValueMatch(gridId, 1, 4, vitamine.lot);
