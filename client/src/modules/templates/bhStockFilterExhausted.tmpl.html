@@ -7,7 +7,7 @@
 
   <div>
     <div class="radio">
-      <label class="radio-inline">
+      <label class="radio-inline" data-exclude-exhausted-lots>
         <input
           type="radio"
           name="{{$ctrl.name}}"
@@ -20,7 +20,7 @@
     </div>
 
     <div class="radio">
-      <label class="radio-inline">
+      <label class="radio-inline" data-include-exhausted-lots>
         <input
           type="radio"
           name="{{$ctrl.name}}"
@@ -33,7 +33,7 @@
     </div>
 
     <div class="radio">
-      <label class="radio-inline">
+      <label class="radio-inline" data-include-only-exhausted-lots>
         <input
           type="radio"
           name="{{$ctrl.name}}"

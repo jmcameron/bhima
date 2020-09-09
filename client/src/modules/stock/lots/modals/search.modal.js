@@ -97,7 +97,7 @@ function SearchLotsModalController(data, util, Store, Instance, Periods, Stock, 
     vm.defaultQueries.limit = data.limit;
   }
 
-  vm.cancel = function cancel() { Instance.close(); };
+  vm.cancel = () => Instance.dismiss();
 
   vm.submit = () => {
     const loggedChanges = SearchModal.getChanges(vm.searchQueries, changes, displayValues, lastDisplayValues);
