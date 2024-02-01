@@ -4,6 +4,8 @@
 
 const { expect } = require('@playwright/test');
 
+const { PAGES } = require('../setup/global.state');
+
 const PATH_CLEAN_REGEXP = /^[#!/]+/g;
 
 /**
@@ -175,8 +177,11 @@ module.exports = {
    * @param {object} newPage - Playwright test browser test page
    */
   registerPage : function registerPage(newPage) {
+    PAGES[0] = newPage;
     page = newPage;
   },
+
+  getPage : function getPage() { return page; },
 
   /**
    * get the browser path (after the baseUrl)

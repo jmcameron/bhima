@@ -1,16 +1,20 @@
 const { defineConfig, devices } = require('@playwright/test');
+
+const path = require('path');
+
+const { STORAGE_STATE } = require('./test/end-to-end/setup/global.state');
+
+// Read environment variables from file.
 require('dotenv').config();
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+const SETUP_DIR = path.join(__dirname, 'test/end-to-end/setup/');
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
+
+  globalSetup : require.resolve(path.join(SETUP_DIR, 'global.setup')),
 
   // testDir : process.env.E2E_DIR
   //   ? `./test/end-to-end/${process.env.E2E_DIR}`
@@ -48,8 +52,8 @@ module.exports = defineConfig({
       ? { open : 'never' }
       : { outputFolder : 'results/playwright-report' }],
     ['junit', {
-      outputFile : process.env.TEST_NUM
-        ? `results/end-to-end-${process.env.TEST_NUM}-results.xml`
+      outputFile : process.env.TEST_NAME
+        ? `results/end-to-end-${process.env.TEST_NAME}-results.xml`
         : 'results/end-to-end-results.xml',
     }],
   ],
@@ -69,40 +73,20 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects : [
+    // {
+    //   name : 'setup',
+    //   testDir : 'test/end-to-end/setup',
+    //   testMatch : 'global.setup.js',
+    //   // retries : 0,
+    // },
     {
       name : 'chromium',
-      use : { ...devices['Desktop Chrome'] },
+      use : {
+        ...devices['Desktop Chrome'],
+        storageState : STORAGE_STATE,
+      },
+      // dependencies : ['setup'],
     },
-
-    // {
-    //   name : 'firefox',
-    //   use : { ...devices['Desktop Firefox'] },
-    // },
-
-    // {
-    //   name : 'webkit',
-    //   use : { ...devices['Desktop Safari'] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name : 'Mobile Chrome',
-    //   use : { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name : 'Mobile Safari',
-    //   use : { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name : 'Microsoft Edge',
-    //   use:  { channel: 'msedge' },
-    // },
-    // {
-    //   name : 'Google Chrome',
-    //   use : { channel: 'chrome' },
-    // },
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */

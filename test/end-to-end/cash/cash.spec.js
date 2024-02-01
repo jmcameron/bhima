@@ -1,6 +1,8 @@
 const { chromium } = require('@playwright/test');
 const { test, expect } = require('@playwright/test');
 
+const { PAGES } = require('../setup/global.state');
+
 const components = require('../shared/components');
 const TU = require('../shared/TestUtils');
 const GU = require('../shared/GridUtils');
@@ -8,11 +10,14 @@ const GridRow = require('../shared/GridRow');
 const SearchModal = require('../shared/search.page');
 const Filters = require('../shared/components/bhFilters');
 
+console.log("P: ", PAGES.length);
+
 test.beforeAll(async () => {
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-  TU.registerPage(page);
-  await TU.login();
+  TU.registerPage(PAGES[0]);
+  // const browser = await chromium.launch();
+  // const page = await browser.newPage();
+  // TU.registerPage(page);
+  // await TU.login();
 });
 
 test.describe('Cash Payments', () => {

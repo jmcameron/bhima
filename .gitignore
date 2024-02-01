@@ -67,4 +67,6 @@ yarn-error.log
 /playwright/.cache
 /tests-examples
 
+test/end-to-end/setup/.auth
+
 .sqlfluff
