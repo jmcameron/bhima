@@ -1245,7 +1245,7 @@ BEGIN
   CLOSE curse;
 
   -- if there is remainder cost, bill the debtor the full amount
-  IF icost > 0 THEN
+  IF icost >= 0 THEN
     INSERT INTO posting_journal (
       uuid, project_id, fiscal_year_id, period_id, trans_id, trans_id_reference_number, trans_date,
       record_uuid, description, account_id, debit, credit, debit_equiv,
@@ -3295,7 +3295,7 @@ CREATE PROCEDURE GetAMC(
   -- The average consumption is obtained by dividing the quantity consumed during the period by the difference of the
   -- number of months in the period minus the total number of days of stock out in the period. The MSH algorithm
   -- is recommended by the Management Sciences for Health organization (https://www.msh.org).
-  SET _algo_msh = (_sum_consumed_quantity / (_number_of_month - (_sum_stock_out_day / 30.5)));
+  SET _algo_msh = (_sum_consumed_quantity / IF((_number_of_month - (_sum_stock_out_day / 30.5)) = 0 OR NULL, 1, (_number_of_month - (_sum_stock_out_day / 30.5))));
 
   SELECT
     BUID(_depot_uuid) AS depot_uuid,

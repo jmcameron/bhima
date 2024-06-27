@@ -5,7 +5,7 @@
 *~
 
 # ignore lock file until it works with npm < version 5
-package-lock.json
+#package-lock.json
 
 # ignore all compressed files
 *.gz, *.xz, *.zip
@@ -42,7 +42,6 @@ nbproject/
 
 # Ignore test files
 sh/build-database-test.sh
-results/
 
 # Ignore local temporary files
 temp/
@@ -62,10 +61,11 @@ migration-*.sql
 yarn-error.log
 *.log
 
-/test-results
-/playwright-report
-/playwright/.cache
-/tests-examples
+results
+test-results
+playwright-report
+playwright/.cache
+tests-examples
 
 test/end-to-end/setup/.auth
 

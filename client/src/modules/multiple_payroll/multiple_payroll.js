@@ -98,6 +98,7 @@ function MultiplePayrollController(
     enableColumnMenus : false,
     flatEntityAccess  : true,
     fastWatch         : true,
+    rowTemplate       : '/modules/templates/row.negative.html',
     columnDefs,
     onRegisterApi : (api) => { vm.gridApi = api; },
   };
@@ -201,8 +202,17 @@ function MultiplePayrollController(
   vm.putOnWaiting = function putOnWaiting() {
     const employees = vm.gridApi.selection.getSelectedRows();
     vm.getSelectedEmployees = employees;
+    let numberOfEmployeesWithNegativeSalary = 0;
 
-    if (employees.length) {
+    employees.forEach(emp => {
+      if (emp.net_salary < 0) {
+        numberOfEmployeesWithNegativeSalary++;
+      }
+    });
+
+    if (numberOfEmployeesWithNegativeSalary > 0) {
+      Notify.danger('FORM.WARNINGS.ATTENTION_NEGATIVE_VALUE');
+    } else if (employees.length && (numberOfEmployeesWithNegativeSalary === 0)) {
       // get All Employees Uuid
       const employeesUuid = employees.map(emp => emp.employee_uuid);
 
@@ -210,17 +220,31 @@ function MultiplePayrollController(
       const isNotConfigured = employee => parseInt(employee.status_id, 10) !== 2;
       const invalid = employees.some(isNotConfigured);
 
+      let totalNetSalary = 0;
+      employees.forEach(emp => {
+        totalNetSalary += emp.net_salary;
+      });
+
       if (invalid) {
         Notify.warn('FORM.WARNINGS.ATTENTION_WAITING_LIST');
       } else {
-        vm.activePosting = false;
+        const employeesNumber = employeesUuid.length;
+        const paiementPeriodLabel = vm.latestViewFilters.defaultFilters[0].displayValue;
 
-        const idPeriod = vm.latestViewFilters.defaultFilters[0]._value;
-        MultiplePayroll.paymentCommitment(idPeriod, employeesUuid)
-          .then(() => {
-            Notify.success('FORM.INFO.CONFIGURED_SUCCESSFULLY');
-            vm.activePosting = true;
-            $state.go('multiple_payroll', null, { reload : true });
+        MultiplePayroll.openModalWaitingListConfirmation(employeesNumber, paiementPeriodLabel, totalNetSalary)
+          .then(success => {
+            if (success) {
+              vm.activePosting = false;
+
+              const idPeriod = vm.latestViewFilters.defaultFilters[0]._value;
+              MultiplePayroll.paymentCommitment(idPeriod, employeesUuid)
+                .then(() => {
+                  Notify.success('FORM.INFO.CONFIGURED_SUCCESSFULLY');
+                  vm.activePosting = true;
+                  $state.go('multiple_payroll', null, { reload : true });
+                })
+                .catch(Notify.handleError);
+            }
           })
           .catch(Notify.handleError);
       }

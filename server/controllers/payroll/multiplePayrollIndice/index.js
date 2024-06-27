@@ -10,7 +10,7 @@ const db = require('../../../lib/db');
 exports.read = read;
 exports.create = create;
 exports.lookUp = lookUp;
-exports.parameters = require('./paramter.config');
+exports.parameters = require('./parameters.config');
 exports.reports = require('./report');
 
 // retrieve indice's value for employee(s)
@@ -120,8 +120,11 @@ async function lookUp(options) {
   // let get rubric values for each employee
   const stagePaymentsParams = employeeUuid ? [payConfigId, db.bid(employeeUuid)] : [payConfigId];
   const stagePayments = await db.exec(stagePaymentIndiceSql, stagePaymentsParams);
+
   stagePayments.forEach(stagePay => {
-    employeesMap[stagePay.employee_uuid].rubrics.push(stagePay);
+    if (employeesMap[stagePay.employee_uuid]) {
+      employeesMap[stagePay.employee_uuid].rubrics.push(stagePay);
+    }
   });
 
   // let get rubric for this payment period
