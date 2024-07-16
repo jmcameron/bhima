@@ -95,7 +95,7 @@
     "@ima-worldhealth/coral": "^2.15.0",
     "@ima-worldhealth/tree": "^2.6.0",
     "@types/angular": "^1.8.9",
-    "@uirouter/angularjs": "^1.1.0",
+    "@uirouter/angularjs": "^1.1.1",
     "@uirouter/core": "^6.1.0",
     "accounting-js": "^1.1.1",
     "adm-zip": "^0.5.14",
