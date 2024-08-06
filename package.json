@@ -98,7 +98,7 @@
     "@uirouter/angularjs": "^1.1.0",
     "@uirouter/core": "^6.1.0",
     "accounting-js": "^1.1.1",
-    "adm-zip": "^0.5.14",
+    "adm-zip": "^0.5.15",
     "angular": "^1.8.3",
     "angular-animate": "^1.8.3",
     "angular-dynamic-locale": "^0.1.38",
